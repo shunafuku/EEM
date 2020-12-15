@@ -16,7 +16,7 @@ with open("conf.json","r") as rf:
     conf_dict = json.load(rf)
 
 log_path = "log.csv"
-entries_file = "entries-file.csv"
+entries_file = "entries.csv"
 
 
 def on_connect_nfc(tag):

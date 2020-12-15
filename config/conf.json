@@ -1,3 +1,5 @@
 {
-    "GSSURL":""
+  "GSSURL": "",
+  "slackWebhook": "",
+  "mailAddress": ""
 }

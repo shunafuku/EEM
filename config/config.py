@@ -1,3 +1,11 @@
-entries_file = "entries-file.csv"
-rs_audio_file = "se_maoudamashii_system23.wav"
-gss_url=""
+import json
+
+with open("conf.json", "r") as rf:
+    conf: dict = json.load(rf)
+
+for key: str in conf:
+    print("現在の設定：" + conf[key])
+    conf[key]: str = input(key + ":")
+
+with open("conf.json", "w") as wf:
+    json.dump(conf, wf, indent=2)
