@@ -16,7 +16,8 @@ from module.post import postData
 cwd = pathlib.Path.cwd()
 log_path = cwd.joinpath("log.csv")
 entries_path = cwd.joinpath("entries.csv")
-with open("/config/conf.json","r") as rf:
+conf_path = cwd.joinpath("config/conf.json")
+with open(conf_path,"r") as rf:
     conf: dict = json.load(rf)
 
 
@@ -43,13 +44,12 @@ def on_connect_nfc(tag) -> bool:
 
 def main() -> None:
     while True:
-        with nfc.ContactlessFrontend('usb[054c]') as clf:
+        with nfc.ContactlessFrontend('usb') as clf:
             rdwr_options: dict = {
                 'targets': ['212F', '424F'],
                 'on-connect': on_connect_nfc,
             }
             clf.connect(rdwr=rdwr_options)
-        time.sleep(2)
 
 
 if __name__ == "__main__":
