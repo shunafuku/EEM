@@ -28,4 +28,4 @@ def update_entries(file_path, stude_id: str, entries: list, is_exit: bool) -> No
 
 def add_log(file_path, dict_eem: dict):
     with open(file_path,"w", encoding=csv_encode) as wf:
-        wf.write(",".join(dict_eem.values))
+        wf.write(",".join(str(x) for x in dict_eem.values())
