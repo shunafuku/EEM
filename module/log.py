@@ -27,7 +27,7 @@ def update_entries(file_path, stude_id: str, entries: list, is_exit: bool) -> No
 
 
 def add_log(file_path, dict_eem: dict):
-    log: str
+    log: str = ""
     for key in dict_eem:
          log += dict_eem[key] + "/"
     with open(file_path,"w", encoding=csv_encode) as wf:
