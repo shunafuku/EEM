@@ -1,14 +1,14 @@
 import requests
 import json
 
-def postData(data, gss_url):
+def postData(data: dict, gss_url: str) -> bool:
     if(data is None):
         print("params is empty")
         return False
-    payload = {
+    payload: dict = {
         "data": data
     }
-    headers = {
+    headers: dict = {
         'Content-Type': 'application/json',
     }
     response = requests.post(gss_url, data=json.dumps(payload), headers=headers)

@@ -1,31 +1,32 @@
-def check_entry(sid, file_name):
-    encode = "utf-8"
-    entries = get_entries(file_name, encode)
-    if(sid in entries):
-        entries.remove(sid)
-        write_entry(entries, file_name, encode)
-        return "退室"
-    else:
-        entries.add(sid) 
-        write_entry(entries, file_name, encode)
-        return "入室"
+import pathlib
+import csv
+
+csv_encode = "utf-8"
+
+def has_stude_id(file_path, stude_id: str) -> bool:
+    entries: list = load_entries_tolist(file_path)
+    is_exit: bool = True if stude_id in entries else False
+    update_entries(file_path, stude_id, entries, is_exit)
+    return is_exit
 
 
-def get_entries(file_name, encode):
-    with open(file_name,"r", encoding=encode) as rf:
-        entries = rf.readline()
-        entries = [x.strip() for x in entries.split(",")]
-        entries = set(filter(lambda x:x !='', entries))
-        print(entries)
+def load_entries_tolist(file_path) -> list:
+    entries: list = []
+    with open(file_path,"r", encoding=csv_encode) as rf:
+        reader = csv.reader(rf)
+        for row in reader:
+            entries.extend(row)
     return entries
 
 
-def write_entry(entries, file_name, encode):
-    with open(file_name,"w", encoding=encode) as wf:
-        wf.write(",".join(entries))
+def update_entries(file_path, stude_id: str, entries: list, is_exit: bool) -> None:
+    entries.remove(stude_id) if is_exit else entries.append(stude_id)
+    with open(file_path,"w", encoding=csv_encode) as wf:
+        writer = csv.writer(wf, lineterminator="\n")
+        writer.writerow(entries)
 
 
-def write_log(dict_eem, file_name, encode):
-    log = dict_eem["sid"] + dict_eem["time"] + dict_eem["EoE"]
-    with open(file_name,"w", encoding=encode) as wf:
+def add_log(file_path, dict_eem: dict):
+    log = dict_eem["stude_id"] + dict_eem["time"] + dict_eem["EoE"]
+    with open(file_path,"w", encoding=csv_encode) as wf:
         wf.write(",".join(log))

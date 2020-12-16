@@ -1,16 +1,6 @@
 import datetime
 
-def get_time():
+def now_datetime() -> str:
     now = datetime.datetime.now()
-    now_time = (str(now.year)
-                + "-"
-                + str(now.month)
-                + "-"
-                + str(now.day)
-                + " "
-                + str(now.hour)
-                + ":"
-                + str(now.minute)
-                + ":"
-                + str(now.second))
-    return now_time
+    remove_microsec: str = now.strftime("%Y-%m-%d %H:%M:%S")
+    return remove_microsec
