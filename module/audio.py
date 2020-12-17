@@ -1,6 +1,7 @@
 import pyaudio
 import wave
 
+
 def res_audio(audio_file):
     CHUNK = 44100
     audio = pyaudio.PyAudio()

@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 
 import nfc
-import time
 import json
 import pathlib
-import typing
 
 from module.scan import extract_stude_id
 from module.time import now_datetime
@@ -12,12 +10,12 @@ from module.log import has_stude_id, add_log
 from module.audio import res_audio
 from module.post import postData
 
-#URL等の情報を読み込み。
+# URL等の情報を読み込み。
 cwd = pathlib.Path.cwd()
 log_path = cwd.joinpath("log.csv")
 entries_path = cwd.joinpath("entries.csv")
 conf_path = cwd.joinpath("config/conf.json")
-with open(conf_path,"r") as rf:
+with open(conf_path, "r") as rf:
     conf: dict = json.load(rf)
 
 
@@ -31,8 +29,8 @@ def on_connect_nfc(tag) -> bool:
     )
 
     add_log(log_path, dict_eem)
-    #postData(dict_eem, conf["GSSURL"])
-    #res_audio(rs_audio_file)
+    # postData(dict_eem, conf["GSSURL"])
+    # res_audio(rs_audio_file)
 
     print("-----------------------------------------")
     for key in dict_eem:
