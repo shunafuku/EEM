@@ -21,16 +21,19 @@ with open(conf_path, "r") as rf:
     conf: dict = json.load(rf)
 
 
+class Stamping_cont(TypedDict):
+    stude_id: str
+    datetime: str
+    entry_exit: str
+
+
 def on_connect_nfc(tag) -> bool:
-    Stamping_cont = TypedDict('Stamping_cont', {
-        "stude_id": str, "datetime": str, "entry_exit": str
-    })
+    stude_id = extract_stude_id(tag)
     stamping_cont: Stamping_cont = {
-        "stude_id": extract_stude_id(tag),
+        "stude_id": stude_id,
         "datetime": now_datetime(),
         "entry_exit": (
-            "退室"
-            if has_stude_id(entries_path, stamping_cont["stude_id"])
+            "退室" if has_stude_id(entries_path, stude_id)
             else "入室"
         )
     }
