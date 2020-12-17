@@ -28,6 +28,6 @@ def update_entries(
         writer.writerow(entries)
 
 
-def add_log(file_path, dict_eem: dict) -> None:
+def add_log(file_path, stamping_cont) -> None:
     with open(file_path, "a", encoding=csv_encode) as af:
-        af.write(",".join(str(x) for x in dict_eem.values()) + "\n")
+        af.write(",".join(str(x) for x in stamping_cont.values()) + "\n")
