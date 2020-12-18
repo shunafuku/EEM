@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
-import nfc
 import json
 import pathlib
 from typing import TypedDict
+
+import nfc
 
 from module.scan import extract_stude_id
 from module.time import now_datetime
