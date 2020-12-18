@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def postData(data: dict, gss_url: str) -> bool:
+def postData(data, gss_url: str) -> bool:
     if(data is None):
         print("params is empty")
         return False

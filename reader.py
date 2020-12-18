@@ -16,6 +16,7 @@ cwd = pathlib.Path.cwd()
 log_path = cwd.joinpath("log.csv")
 entries_path = cwd.joinpath("entries.csv")
 conf_path = cwd.joinpath("config/conf.json")
+audio_path = cwd.joinpath("audio")
 # URL情報を読み込み。
 with open(conf_path, "r") as rf:
     conf: dict = json.load(rf)
@@ -39,8 +40,11 @@ def on_connect_nfc(tag) -> bool:
     }
 
     add_log(log_path, stamping_cont)
-    # postData(stamping_cont, conf["GSSURL"])
-    # res_audio(rs_audio_file)
+    postData(stamping_cont, conf["GSSURL"])
+    if(stamping_cont["entry_exit"] == "退室"):
+        res_audio(audio_path.joinpath("exit"))
+    else:
+        res_audio(audio_path.joinpath("entry"))
 
     print("-----------------------------------------")
     print("stude_id:" + stamping_cont["stude_id"])
