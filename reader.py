@@ -14,9 +14,9 @@ from module.post import postData
 
 # path設定
 cwd = pathlib.Path.cwd()
+conf_path = cwd.joinpath("config/conf.json")
 log_path = cwd.joinpath("log.csv")
 entries_path = cwd.joinpath("entries.csv")
-conf_path = cwd.joinpath("config/conf.json")
 audio_path = cwd.joinpath("audio")
 # URL情報を読み込み。
 with open(conf_path, "r") as rf:
@@ -41,7 +41,7 @@ def on_connect_nfc(tag) -> bool:
     }
 
     add_log(log_path, stamping_cont)
-    postData(stamping_cont, conf["GSSURL"])
+    # postData(stamping_cont, conf["GSSURL"])
     if(stamping_cont["entry_exit"] == "退室"):
         res_audio(audio_path.joinpath("exit"))
     else:
