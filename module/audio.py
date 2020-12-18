@@ -1,6 +1,6 @@
 from playsound import playsound
-import pyaudio
-import wave
+# import pyaudio
+# import wave
 
 
 def res_audio(audio_path):
