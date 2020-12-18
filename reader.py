@@ -43,9 +43,9 @@ def on_connect_nfc(tag) -> bool:
     add_log(log_path, stamping_cont)
     # postData(stamping_cont, conf["GSSURL"])
     if(stamping_cont["entry_exit"] == "退室"):
-        res_audio(audio_path.joinpath("exit"))
+        res_audio(audio_path.joinpath("exit.wav"))
     else:
-        res_audio(audio_path.joinpath("entry"))
+        res_audio(audio_path.joinpath("entry.wav"))
 
     print("-----------------------------------------")
     print("stude_id:" + stamping_cont["stude_id"])
