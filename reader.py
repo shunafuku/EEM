@@ -30,6 +30,7 @@ class Stamping_cont(TypedDict):
 
 
 def on_connect_nfc(tag) -> bool:
+    print("-----------------------------------------")
     stude_id = extract_stude_id(tag)
     stamping_cont: Stamping_cont = {
         "stude_id": stude_id,
@@ -47,7 +48,6 @@ def on_connect_nfc(tag) -> bool:
     else:
         res_audio(audio_path.joinpath("entry.wav"))
 
-    print("-----------------------------------------")
     print("stude_id:" + stamping_cont["stude_id"])
     print("datetime:" + stamping_cont["datetime"])
     print("entry_exit:" + stamping_cont["entry_exit"])
