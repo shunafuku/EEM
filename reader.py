@@ -59,7 +59,7 @@ def on_connect_nfc(tag) -> bool:
 
 def main() -> None:
     while True:
-        with nfc.ContactlessFrontend('usb') as clf:
+        with nfc.ContactlessFrontend('usb:054c:06c3') as clf:
             rdwr_options: dict = {
                 'targets': ['212F', '424F'],
                 'on-connect': on_connect_nfc,
