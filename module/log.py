@@ -40,6 +40,6 @@ def add_log(file_path, stamping_cont):
         c = conn.cursor()
         stamp = tuple(stamping_cont.values())
         c.execute('CREATE TABLE IF NOT EXISTS logtb \
-            (stamped datetime, studeid text, enex text)')
+            (studeid text, stamped datetime, enex text)')
         c.execute('INSERT INTO logtb VALUES (?,?,?)', stamp)
         conn.commit()
