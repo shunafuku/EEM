@@ -1,4 +1,5 @@
 import csv
+import sqlite3
 
 csv_encode = "utf-8"
 
@@ -28,6 +29,17 @@ def update_entries(
         writer.writerow(entries)
 
 
-def add_log(file_path, stamping_cont) -> None:
-    with open(file_path, "a", encoding=csv_encode) as af:
-        af.write(",".join(str(x) for x in stamping_cont.values()) + "\n")
+# def add_log(file_path, stamping_cont) -> None:
+#     with open(file_path, "a", encoding=csv_encode) as af:
+#         af.write(",".join(str(x) for x in stamping_cont.values()) + "\n")
+
+
+def add_log(file_path, stamping_cont):
+    stamp = tuple(stamping_cont.values())
+    with sqlite3.connect("log.db") as conn:
+        c = conn.cursor()
+        stamp = tuple(stamping_cont.values())
+        c.execute('CREATE TABLE IF NOT EXISTS logtb \
+            (stamped datetime, studeid text, enex text)')
+        c.execute('INSERT INTO logtb VALUES (?,?,?)', stamp)
+        conn.commit()
