@@ -14,8 +14,8 @@ from module.post import postData
 # path設定
 cwd = pathlib.Path.cwd()
 conf_path = cwd.joinpath("config/conf.json")
-log_path = cwd.joinpath("log.db")
-entries_path = cwd.joinpath("entries.csv")
+log_path = cwd.joinpath("log/log.db")
+entries_path = cwd.joinpath("log/entries.csv")
 audio_path = cwd.joinpath("audio")
 # URL情報を読み込み。
 with open(conf_path, "r") as rf:
