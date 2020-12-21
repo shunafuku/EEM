@@ -3,7 +3,6 @@
 import json
 import pathlib
 from typing import TypedDict
-
 import nfc
 
 from module.scan import extract_stude_id
@@ -15,7 +14,7 @@ from module.post import postData
 # path設定
 cwd = pathlib.Path.cwd()
 conf_path = cwd.joinpath("config/conf.json")
-log_path = cwd.joinpath("log.csv")
+log_path = cwd.joinpath("log.db")
 entries_path = cwd.joinpath("entries.csv")
 audio_path = cwd.joinpath("audio")
 # URL情報を読み込み。
